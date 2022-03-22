@@ -49,3 +49,11 @@ form label {
   height: auto;
   border: .5vw solid #81A851;
 }
+
+#error-message {
+  background-color: red;
+  color: white;
+  margin: auto;
+  width: max-content;
+  font-size: 2vw;
+}
