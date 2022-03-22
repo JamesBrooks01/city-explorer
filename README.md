@@ -32,3 +32,44 @@ This app uses HTML, CSS, JavaScript at base; and uses the libraries of React, Re
 ## Additional Information
 
 ![WRCC Image](./src/imgs/WRCC%20Lab%2006.png)
+
+## Time Estimations
+
+>Name of feature: Set up your React repository & API keys
+>Estimate of time needed to complete: 10-15 Minutes
+>
+>Start time: 4:10pm
+>
+>Finish time: 4:31pm
+>
+>Actual time needed to complete: 21 Minutes
+
+>Name of feature: Locations
+>
+>Estimate of time needed to complete: 30-45 Minutes
+>
+>Start time: 4:31pm
+>
+>Finish time: 5:13pm
+>
+>Actual time needed to complete: 42 Minutes
+
+>Name of feature: Map
+>
+>Estimate of time needed to complete: 30-45 Minutes
+>
+>Start time: 5:13pm
+>
+>Finish time: 5:40pm
+>
+>Actual time needed to complete: 27 Minutes
+
+>Name of feature: Errors
+>
+>Estimate of time needed to complete: 30-45 Minutes
+>
+>Start time: 5:50pm
+>
+>Finish time: 6:11pm
+>
+>Actual time needed to complete: 21 Minutes
