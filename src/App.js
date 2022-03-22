@@ -9,6 +9,9 @@ class App extends React.Component {
     this.state = {
       cityData: {},
       currentCity: '',
+      latitude: 0,
+      longitude: 0,
+      imgURL: '',
       dataEntered: false
     }
   }
@@ -22,9 +25,11 @@ class App extends React.Component {
   callCityData = async (e) => {
     e.preventDefault();
     let currentCityData = await axios.get(`https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&q=${this.state.currentCity}&format=json`);
-    console.log(currentCityData);
     this.setState({
       cityData: currentCityData,
+      latitude: currentCityData.data[0].lat,
+      longitude: currentCityData.data[0].lon,
+      imgURL: `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${currentCityData.data[0].lat},${currentCityData.data[0].lon}&zoom=12`,
       dataEntered: true
     })
   }
@@ -34,18 +39,18 @@ class App extends React.Component {
       <>
         <h1>City Explorer</h1>
         <form onSubmit={this.callCityData}>
-          <label>Pick a city:
+          <label>Pick a city:</label>
             <input type="text" onInput={this.handleCityNameInput} />
             <button type="submit">Explore!</button>
-          </label>
         </form>
         {this.state.dataEntered
         ?
         <Card>
           <Card.Body>
             <Card.Title>{this.state.cityData.data[0].display_name}</Card.Title>
-            <Card.Text>Latitude: {this.state.cityData.data[0].lat}</Card.Text>
-            <Card.Text>Longitude: {this.state.cityData.data[0].lon}</Card.Text>
+            <Card.Text>Latitude: {this.state.latitude}</Card.Text>
+            <Card.Text>Longitude: {this.state.longitude}</Card.Text>
+            <Card.Img src={this.state.imgURL}/>
           </Card.Body>
         </Card>
         :
