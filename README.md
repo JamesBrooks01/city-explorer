@@ -23,15 +23,22 @@ This app uses HTML, CSS, JavaScript at base; and uses the libraries of React, Re
 - 03-21-2022 5:40pm - Added map image based upon Latitude and Longitude.
 - 03-21-2022 5:50pm - Added CSS Styling.
 - 03-21-2022 6:11pm - Added Error message functionality.
+- 03-22-2022 6:28pm - Added render functionality for Weather Data
+- 03-22-2022 6:35pm - Ensured Error Functionality still functioned with Weather Data added on.
 
 ## Credit and Collaborations
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
-- Liesl White(WRCC Partner)
+- Liesl White (Day01 WRRC Partner)
   - [LinkedIn](https://www.linkedin.com/in/lieslwhite/)
+- Cole Gibbs (Day02 WRRC Partner)
+  - [LinkedIn](https://www.linkedin.com/in/cole-gibbs/)
 
 ## Additional Information
 
-![WRCC Image](./src/imgs/WRCC%20Lab%2006.png)
+- Day 01:
+  - ![Day01 WRRC Image](./src/imgs/WRCC%20Lab%2006.png)
+- Day 02:
+  - ![Day02 WRRC Image](./src/imgs/Lab%2007%20WRRC.png)
 
 ## Time Estimations
 
@@ -73,3 +80,23 @@ This app uses HTML, CSS, JavaScript at base; and uses the libraries of React, Re
 >Finish time: 6:11pm
 >
 >Actual time needed to complete: 21 Minutes
+
+>Name of feature: Weather(Front-End)
+>
+>Estimate of time needed to complete: 60 Minutes
+>
+>Start time: 5:37pm
+>
+>Finish time: 6:30pm
+>
+>Actual time needed to complete: 53 Minutes
+
+>Name of feature: Errors (Revisited)
+>
+>Estimate of time needed to complete: 10 Minutes
+>
+>Start time: 6:30pm
+>
+>Finish time: 6:35pm
+>
+>Actual time needed to complete: 5 Minutes
