@@ -6,8 +6,7 @@ class Weather extends React.Component {
     return (
       <Card>
         <Card.Body>
-            <Card.Title>Weather in: {this.props.cityName} on: {this.props.date}</Card.Title>
-          {/* <Card.Text>{this.props.date}</Card.Text> */}
+          <Card.Title>Weather in: {this.props.cityName} on: {this.props.date}</Card.Title>
           <Card.Text>{this.props.description}</Card.Text>
         </Card.Body>
       </Card>
