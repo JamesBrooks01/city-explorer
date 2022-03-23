@@ -3,6 +3,7 @@ import axios from 'axios';
 import Card from 'react-bootstrap/Card';
 import Alert from 'react-bootstrap/Alert';
 import './App.css';
+import Weather from './Weather.js';
 
 class App extends React.Component {
   constructor(props) {
@@ -13,6 +14,7 @@ class App extends React.Component {
       latitude: 0,
       longitude: 0,
       imgURL: '',
+      weatherArray: [],
       dataEntered: false,
       error: false,
       errorMessage: ''
@@ -29,11 +31,14 @@ class App extends React.Component {
     e.preventDefault();
     try {
       let currentCityData = await axios.get(`https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&q=${this.state.currentCity}&format=json`);
+      let weatherData = await axios.get(`https://city-explorer-api-james-brooks.herokuapp.com/weather?city=${this.state.currentCity}`)
+      console.log(weatherData.data);
       this.setState({
         cityData: currentCityData,
         latitude: currentCityData.data[0].lat,
         longitude: currentCityData.data[0].lon,
         imgURL: `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${currentCityData.data[0].lat},${currentCityData.data[0].lon}&zoom=12`,
+        weatherArray: weatherData.data,
         dataEntered: true
       })
     } catch (error) {
@@ -45,6 +50,15 @@ class App extends React.Component {
   }
 
   render() {
+    let weather = this.state.weatherArray.map((date, i) => (
+      <Weather
+        cityName={this.state.currentCity}
+        date={date.date}
+        description={date.description}
+        key={i}
+        number={i + 1}
+      />
+    ))
     return (
       <>
         <h1>City Explorer</h1>
@@ -57,19 +71,22 @@ class App extends React.Component {
           ?
           <Alert id='error-message'>{this.state.errorMessage}</Alert>
           :
-              this.state.dataEntered
-                ?
-                <Card>
-                  <Card.Body>
-                    <Card.Title>{this.state.cityData.data[0].display_name}</Card.Title>
-                    <Card.Text>Latitude: {this.state.latitude}</Card.Text>
-                    <Card.Text>Longitude: {this.state.longitude}</Card.Text>
-                    <Card.Img src={this.state.imgURL} />
-                  </Card.Body>
-                </Card>
-                :
-                <></>
-            }
+          this.state.dataEntered
+            ?
+            <>
+              <Card>
+                <Card.Body>
+                  <Card.Title>{this.state.cityData.data[0].display_name}</Card.Title>
+                  <Card.Text>Latitude: {this.state.latitude}</Card.Text>
+                  <Card.Text>Longitude: {this.state.longitude}</Card.Text>
+                  <Card.Img src={this.state.imgURL} />
+                </Card.Body>
+              </Card>
+              {weather}
+            </>
+            :
+            <></>
+        }
       </>
     );
   }
