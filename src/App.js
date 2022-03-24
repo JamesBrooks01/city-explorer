@@ -130,7 +130,6 @@ class App extends React.Component {
           this.state.dataEntered
             ?
             <>
-              <Container>
                 <Card>
                   <Card.Body>
                     <Card.Title>{this.state.cityData.data[0].display_name}</Card.Title>
@@ -139,10 +138,7 @@ class App extends React.Component {
                     <Card.Img src={this.state.imgURL} />
                   </Card.Body>
                 </Card>
-              </Container>
-              <Container>
                 {weather}
-              </Container>
               <Container className='movies'>
                 {movies}
               </Container>
