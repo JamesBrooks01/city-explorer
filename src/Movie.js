@@ -4,7 +4,7 @@ import Card from 'react-bootstrap/Card';
 class Movie extends React.Component {
   render() {
     return (
-        <Card>
+        <Card className='movie'>
           <Card.Body>
             <Card.Title>{this.props.title}</Card.Title>
             <Card.Img src={this.props.imgURL}/>
