@@ -51,7 +51,7 @@ class App extends React.Component {
 
   callWeatherData = async () => {
     try {
-      let weatherData = await axios.get(`http://${serverURL}/weather?lat=${this.state.cityData.data[0].lat}&lon=${this.state.cityData.data[0].lon}`)
+      let weatherData = await axios.get(`https://${serverURL}/weather?lat=${this.state.cityData.data[0].lat}&lon=${this.state.cityData.data[0].lon}`)
       this.setState({
         weatherArray: weatherData.data,
       })
@@ -65,7 +65,7 @@ class App extends React.Component {
 
   callMovieData = async () => {
     try {
-      let movieData = await axios.get(`http://${serverURL}/movies?keyword=${this.state.currentCity}`)
+      let movieData = await axios.get(`https://${serverURL}/movies?keyword=${this.state.currentCity}`)
       this.setState({
         movieArray: movieData.data
       })
