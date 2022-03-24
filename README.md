@@ -29,6 +29,7 @@ This app uses HTML, CSS, JavaScript at base; and uses the libraries of React, Re
 - 03-23-2022 6:40pm - Refactored code to make live weather data render and retrieval better.
 - 03-23-2022 8:40pm - Rendered Movie Data.
 - 03-23-2022 9:27pm - Added CSS Styling.
+- 03-23-2022 10:02pm - Deployed.
 
 ## Credit and Collaborations
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
@@ -118,3 +119,13 @@ This app uses HTML, CSS, JavaScript at base; and uses the libraries of React, Re
 >Finish time: 8:40pm
 >
 >Actual time needed to complete: 20 Minutes
+
+>Name of feature: Deploy
+>
+>Estimate of time needed to complete: 5 Minutes
+>
+>Start time: 9:31pm
+>
+>Finish time: 10:02pm
+>
+>Actual time needed to complete: 31 Minutes
