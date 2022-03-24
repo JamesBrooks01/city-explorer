@@ -4,6 +4,10 @@ import Card from 'react-bootstrap/Card';
 import Alert from 'react-bootstrap/Alert';
 import './App.css';
 import Weather from './Weather.js';
+import Movie from './Movie';
+import Container from 'react-bootstrap/esm/Container';
+const serverURL = process.env.REACT_APP_SERVER;
+const locationIQAPI = process.env.REACT_APP_LOCATIONIQ_API_KEY;
 
 class App extends React.Component {
   constructor(props) {
@@ -15,6 +19,7 @@ class App extends React.Component {
       longitude: 0,
       imgURL: '',
       weatherArray: [],
+      movieArray: [],
       dataEntered: false,
       error: false,
       errorMessage: ''
@@ -27,18 +32,57 @@ class App extends React.Component {
     })
   }
 
-  callCityData = async (e) => {
-    e.preventDefault();
+  callMapData = async () => {
     try {
-      let currentCityData = await axios.get(`https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&q=${this.state.currentCity}&format=json`);
-      let weatherData = await axios.get(`https://city-explorer-api-james-brooks.herokuapp.com/weather?city=${this.state.currentCity}`)
-      console.log(weatherData.data);
+      let currentCityData = await axios.get(`https://us1.locationiq.com/v1/search.php?key=${locationIQAPI}&q=${this.state.currentCity}&format=json`);
       this.setState({
         cityData: currentCityData,
         latitude: currentCityData.data[0].lat,
         longitude: currentCityData.data[0].lon,
-        imgURL: `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${currentCityData.data[0].lat},${currentCityData.data[0].lon}&zoom=12`,
+        imgURL: `https://maps.locationiq.com/v3/staticmap?key=${locationIQAPI}&center=${currentCityData.data[0].lat},${currentCityData.data[0].lon}&zoom=12`,
+      })
+    } catch (error) {
+      this.setState({
+        error: true,
+        errorMessage: `An Error has Occurred: ${error.response.status}`
+      })
+    }
+  }
+
+  callWeatherData = async () => {
+    try {
+      let weatherData = await axios.get(`https://${serverURL}/weather?lat=${this.state.cityData.data[0].lat}&lon=${this.state.cityData.data[0].lon}`)
+      this.setState({
         weatherArray: weatherData.data,
+      })
+    } catch (error) {
+      this.setState({
+        error: true,
+        errorMessage: `An Error has Occurred: ${error.response.status}`
+      })
+    }
+  }
+
+  callMovieData = async () => {
+    try {
+      let movieData = await axios.get(`https://${serverURL}/movies?keyword=${this.state.currentCity}`)
+      this.setState({
+        movieArray: movieData.data
+      })
+    } catch (error) {
+      this.setState({
+        error: true,
+        errorMessage: `An Error has Occurred: ${error.response.status}`
+      })
+    }
+  }
+  callCityData = async (e) => {
+    e.preventDefault();
+    try {
+      await this.callMapData();
+      await this.callWeatherData();
+      await this.callMovieData();
+      this.setState({
         dataEntered: true
       })
     } catch (error) {
@@ -59,6 +103,18 @@ class App extends React.Component {
         number={i + 1}
       />
     ))
+    let movies = this.state.movieArray.map((movie, i) => (
+      <Movie
+        title={movie.title}
+        overview={movie.overview}
+        avgVotes={movie.avgVotes}
+        imgURL={`https://image.tmdb.org/t/p/w500/${movie.imgURL}`}
+        popularity={movie.popularity}
+        releaseDate={movie.releaseDate}
+        key={i}
+        number={i + 1}
+      />
+    ))
     return (
       <>
         <h1>City Explorer</h1>
@@ -74,15 +130,18 @@ class App extends React.Component {
           this.state.dataEntered
             ?
             <>
-              <Card>
-                <Card.Body>
-                  <Card.Title>{this.state.cityData.data[0].display_name}</Card.Title>
-                  <Card.Text>Latitude: {this.state.latitude}</Card.Text>
-                  <Card.Text>Longitude: {this.state.longitude}</Card.Text>
-                  <Card.Img src={this.state.imgURL} />
-                </Card.Body>
-              </Card>
-              {weather}
+                <Card>
+                  <Card.Body>
+                    <Card.Title>{this.state.cityData.data[0].display_name}</Card.Title>
+                    <Card.Text>Latitude: {this.state.latitude}</Card.Text>
+                    <Card.Text>Longitude: {this.state.longitude}</Card.Text>
+                    <Card.Img src={this.state.imgURL} />
+                  </Card.Body>
+                </Card>
+                {weather}
+              <Container className='movies'>
+                {movies}
+              </Container>
             </>
             :
             <></>

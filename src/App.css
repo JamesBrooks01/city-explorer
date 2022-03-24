@@ -35,13 +35,16 @@ form label {
   background-color: #81A851;
   font-size: 1.5vw;
   margin: auto;
-  width: max-content;
+  width: fit-content;
 }
 
 .card-text {
   background-color: #81A851;
   margin: auto;
-  width: max-content;
+  width: fit-content;
+  word-wrap: break-word;
+  margin-bottom: .5vh;
+  margin-top: .5vh;
 }
 
 .card-img {
@@ -56,4 +59,14 @@ form label {
   margin: auto;
   width: max-content;
   font-size: 2vw;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.container .card {
+  width: 25%;
+  font-size: .75vw;
 }

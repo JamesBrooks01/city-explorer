@@ -1,7 +1,8 @@
 # City Explorer
 
 **Author**: James Brooks
-**Version**: 1.0.0 (increment the patch/fix version number if you make more commits past your first submission)
+**Version**: 1.0.0
+<!-- (increment the patch/fix version number if you make more commits past your first submission) -->
 
 ## Overview
 <!-- Provide a high level overview of what this application is and why you are building it, beyond the fact that it's an assignment for this class. (i.e. What's your problem domain?) -->
@@ -25,6 +26,10 @@ This app uses HTML, CSS, JavaScript at base; and uses the libraries of React, Re
 - 03-21-2022 6:11pm - Added Error message functionality.
 - 03-22-2022 6:28pm - Added render functionality for Weather Data
 - 03-22-2022 6:35pm - Ensured Error Functionality still functioned with Weather Data added on.
+- 03-23-2022 6:40pm - Refactored code to make live weather data render and retrieval better.
+- 03-23-2022 8:40pm - Rendered Movie Data.
+- 03-23-2022 9:27pm - Added CSS Styling.
+- 03-23-2022 10:02pm - Deployed.
 
 ## Credit and Collaborations
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
@@ -32,6 +37,8 @@ This app uses HTML, CSS, JavaScript at base; and uses the libraries of React, Re
   - [LinkedIn](https://www.linkedin.com/in/lieslwhite/)
 - Cole Gibbs (Day02 WRRC Partner)
   - [LinkedIn](https://www.linkedin.com/in/cole-gibbs/)
+- Tanesha Brester (Day03 WRRC Partner)
+  - [Linkedin](https://www.linkedin.com/in/taneshabrester/)
 
 ## Additional Information
 
@@ -39,6 +46,8 @@ This app uses HTML, CSS, JavaScript at base; and uses the libraries of React, Re
   - ![Day01 WRRC Image](./src/imgs/WRCC%20Lab%2006.png)
 - Day 02:
   - ![Day02 WRRC Image](./src/imgs/Lab%2007%20WRRC.png)
+- Day 03:
+  - ![Day03 WRRC Image](./src/imgs/Lab!08%20WRRC.png)
 
 ## Time Estimations
 
@@ -100,3 +109,23 @@ This app uses HTML, CSS, JavaScript at base; and uses the libraries of React, Re
 >Finish time: 6:35pm
 >
 >Actual time needed to complete: 5 Minutes
+
+>Name of feature: Movies
+>
+>Estimate of time needed to complete: 30 - 45 Minutes
+>
+>Start time: 8:20pm
+>
+>Finish time: 8:40pm
+>
+>Actual time needed to complete: 20 Minutes
+
+>Name of feature: Deploy
+>
+>Estimate of time needed to complete: 5 Minutes
+>
+>Start time: 9:31pm
+>
+>Finish time: 10:02pm
+>
+>Actual time needed to complete: 31 Minutes
