@@ -7,7 +7,7 @@ import Weather from './Weather.js';
 import Movie from './Movie';
 import Container from 'react-bootstrap/esm/Container';
 const serverURL = process.env.REACT_APP_SERVER;
-const locationIQAPI = process.env.REACT_APP_LOCATIONIQ_API_KEY;
+// const locationIQAPI = process.env.REACT_APP_LOCATIONIQ_API_KEY;
 
 class App extends React.Component {
   constructor(props) {
@@ -34,12 +34,12 @@ class App extends React.Component {
 
   callMapData = async () => {
     try {
-      let currentCityData = await axios.get(`https://us1.locationiq.com/v1/search.php?key=${locationIQAPI}&q=${this.state.currentCity}&format=json`);
+      let currentCityData = await axios.get(`${serverURL}/location?cityName=${this.state.currentCity}`);
       this.setState({
-        cityData: currentCityData,
-        latitude: currentCityData.data[0].lat,
-        longitude: currentCityData.data[0].lon,
-        imgURL: `https://maps.locationiq.com/v3/staticmap?key=${locationIQAPI}&center=${currentCityData.data[0].lat},${currentCityData.data[0].lon}&zoom=12`,
+        cityData: currentCityData.data,
+        latitude: currentCityData.data.lat,
+        longitude: currentCityData.data.lon,
+        imgURL: currentCityData.data.imgURL,
       })
     } catch (error) {
       this.setState({
@@ -51,7 +51,7 @@ class App extends React.Component {
 
   callWeatherData = async () => {
     try {
-      let weatherData = await axios.get(`https://${serverURL}/weather?lat=${this.state.cityData.data[0].lat}&lon=${this.state.cityData.data[0].lon}`)
+      let weatherData = await axios.get(`${serverURL}/weather?lat=${this.state.cityData.lat}&lon=${this.state.cityData.lon}`)
       this.setState({
         weatherArray: weatherData.data,
       })
@@ -65,7 +65,7 @@ class App extends React.Component {
 
   callMovieData = async () => {
     try {
-      let movieData = await axios.get(`https://${serverURL}/movies?keyword=${this.state.currentCity}`)
+      let movieData = await axios.get(`${serverURL}/movies?keyword=${this.state.currentCity}`)
       this.setState({
         movieArray: movieData.data
       })
@@ -103,18 +103,20 @@ class App extends React.Component {
         number={i + 1}
       />
     ))
-    let movies = this.state.movieArray.map((movie, i) => (
+    let movies = this.state.movieArray.map((movie, i) => {
+      let imgURL = movie.imgURL ? `https://image.tmdb.org/t/p/w500/${movie.imgURL}` : '';
+      return (
       <Movie
         title={movie.title}
         overview={movie.overview}
         avgVotes={movie.avgVotes}
-        imgURL={`https://image.tmdb.org/t/p/w500/${movie.imgURL}`}
+        imgURL={imgURL}
         popularity={movie.popularity}
         releaseDate={movie.releaseDate}
         key={i}
         number={i + 1}
       />
-    ))
+      )})
     return (
       <>
         <h1>City Explorer</h1>
@@ -132,7 +134,7 @@ class App extends React.Component {
             <>
                 <Card>
                   <Card.Body>
-                    <Card.Title>{this.state.cityData.data[0].display_name}</Card.Title>
+                    <Card.Title>{this.state.cityData.name}</Card.Title>
                     <Card.Text>Latitude: {this.state.latitude}</Card.Text>
                     <Card.Text>Longitude: {this.state.longitude}</Card.Text>
                     <Card.Img src={this.state.imgURL} />
