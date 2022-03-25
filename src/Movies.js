@@ -1,7 +1,7 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
 
-class Movie extends React.Component {
+class Movies extends React.Component {
   render() {
     return (
         <Card className='movie'>
@@ -21,4 +21,4 @@ class Movie extends React.Component {
   }
 }
 
-export default Movie
+export default Movies
