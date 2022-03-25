@@ -7,7 +7,10 @@ class Movie extends React.Component {
         <Card className='movie'>
           <Card.Body>
             <Card.Title>{this.props.title}</Card.Title>
+              {
+                this.props.imgURL &&
             <Card.Img src={this.props.imgURL}/>
+              }
             <Card.Text>{this.props.overview}</Card.Text>
             <Card.Text>Average Vote: {this.props.avgVotes}</Card.Text>
             <Card.Text>Popularity: {this.props.popularity}</Card.Text>
