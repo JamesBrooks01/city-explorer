@@ -1,23 +1,27 @@
-import React from 'react';
-import Card from 'react-bootstrap/Card';
+import React from "react";
+import Movie from './movie.js'
+
 
 class Movies extends React.Component {
   render() {
+    let movies = this.props.movieArray.map((movie, i) => {
+      let imgURL = movie.imgURL ? `https://image.tmdb.org/t/p/w500/${movie.imgURL}` : '';
+      return (
+        <Movie
+          title={movie.title}
+          overview={movie.overview}
+          avgVotes={movie.avgVotes}
+          imgURL={imgURL}
+          popularity={movie.popularity}
+          releaseDate={movie.releaseDate}
+          key={i}
+          number={i + 1}
+        />
+      )
+    });
     return (
-        <Card className='movie'>
-          <Card.Body>
-            <Card.Title>{this.props.title}</Card.Title>
-              {
-                this.props.imgURL &&
-            <Card.Img src={this.props.imgURL}/>
-              }
-            <Card.Text>{this.props.overview}</Card.Text>
-            <Card.Text>Average Vote: {this.props.avgVotes}</Card.Text>
-            <Card.Text>Popularity: {this.props.popularity}</Card.Text>
-            <Card.Text>Released on: {this.props.releaseDate}</Card.Text>
-          </Card.Body>
-        </Card>
-    );
+      [movies]
+    )
   }
 }
 
