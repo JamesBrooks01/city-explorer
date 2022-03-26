@@ -4,10 +4,9 @@ import Card from 'react-bootstrap/Card';
 import Alert from 'react-bootstrap/Alert';
 import './App.css';
 import Weather from './Weather.js';
-import Movie from './Movie';
+import Movies from './Movies';
 import Container from 'react-bootstrap/esm/Container';
 const serverURL = process.env.REACT_APP_SERVER;
-// const locationIQAPI = process.env.REACT_APP_LOCATIONIQ_API_KEY;
 
 class App extends React.Component {
   constructor(props) {
@@ -94,29 +93,6 @@ class App extends React.Component {
   }
 
   render() {
-    let weather = this.state.weatherArray.map((date, i) => (
-      <Weather
-        cityName={this.state.currentCity}
-        date={date.date}
-        description={date.description}
-        key={i}
-        number={i + 1}
-      />
-    ))
-    let movies = this.state.movieArray.map((movie, i) => {
-      let imgURL = movie.imgURL ? `https://image.tmdb.org/t/p/w500/${movie.imgURL}` : '';
-      return (
-      <Movie
-        title={movie.title}
-        overview={movie.overview}
-        avgVotes={movie.avgVotes}
-        imgURL={imgURL}
-        popularity={movie.popularity}
-        releaseDate={movie.releaseDate}
-        key={i}
-        number={i + 1}
-      />
-      )})
     return (
       <>
         <h1>City Explorer</h1>
@@ -126,12 +102,12 @@ class App extends React.Component {
           <button type="submit">Explore!</button>
         </form>
         {this.state.error
-          ?
-          <Alert id='error-message'>{this.state.errorMessage}</Alert>
-          :
-          this.state.dataEntered
             ?
-            <>
+            <Alert id='error-message'>{this.state.errorMessage}</Alert>
+            :
+            this.state.dataEntered
+              ?
+              <>
                 <Card>
                   <Card.Body>
                     <Card.Title>{this.state.cityData.name}</Card.Title>
@@ -140,13 +116,13 @@ class App extends React.Component {
                     <Card.Img src={this.state.imgURL} />
                   </Card.Body>
                 </Card>
-                {weather}
-              <Container className='movies'>
-                {movies}
-              </Container>
-            </>
-            :
-            <></>
+                <Weather weatherArray={this.state.weatherArray} currentCity={this.state.currentCity}/>
+                <Container className='movies'>
+                  <Movies movieArray={this.state.movieArray}/>
+                </Container>
+              </>
+              :
+              <></>
         }
       </>
     );
