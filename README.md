@@ -41,6 +41,8 @@ This app uses HTML, CSS, JavaScript at base; and uses the libraries of React, Re
   - [Linkedin](https://www.linkedin.com/in/taneshabrester/)
 - Dwight Lindquist (Day04 WRRC Partner)
   - [LinkedIn](https://www.linkedin.com/in/dwight-lindquist-a9a0b6b4/)
+- Eden Brekke (Day05 WRRC Partner)
+  - [LinkedIn](https://www.linkedin.com/in/eden-brekke/)
 
 ## Additional Information
 
@@ -51,7 +53,9 @@ This app uses HTML, CSS, JavaScript at base; and uses the libraries of React, Re
 - Day 03:
   - ![Day03 WRRC Image](./src/imgs/Lab!08%20WRRC.png)
 - Day 04:
-  - ![Day03 WRRC Image](./src/imgs/Lab09%20WRRC.png)
+  - ![Day04 WRRC Image](./src/imgs/Lab09%20WRRC.png)
+- Day 05:
+  - ![Day05 WRRC Image](./src/imgs/25March2022_WRRC_withJames.png)
 
 ## Time Estimations
 
